@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --background: radial-gradient(circle at 20% 20%, #210038, #05000d 55%);
+  --surface: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.12);
+  --glow-purple: #9b5cff;
+  --glow-pink: #ff6dc8;
+  --glow-orange: #ff9a5f;
+  --text-primary: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.7);
+}
+
+@theme inline {
+  --color-background: transparent;
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  min-height: 100vh;
+  background-image: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-attachment: fixed;
+}
+
+.marquee-mask {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: marquee 18s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.neon-grid {
+  position: relative;
+}
+
+.neon-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(transparent 95%, rgba(255, 255, 255, 0.08) 95%), linear-gradient(90deg, transparent 95%, rgba(255, 255, 255, 0.08) 95%);
+  background-size: 60px 60px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+.folder-shell {
+  position: relative;
+  width: 100%;
+  padding: 0 12px 12px;
+}
+
+.folder-tab {
+  width: 45%;
+  height: 28px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(90deg, #2a2a2f, #131316);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.folder-body {
+  position: relative;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #1b1b1f, #050506);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.folder-preview {
+  position: absolute;
+  inset: 8px;
+  transform: translateY(25px) scale(0.95);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.folder-face {
+  position: relative;
+  height: 180px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.9));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .folder-face {
+  transform: rotateX(-8deg) translateY(-6px);
+  transform-origin: top;
+}
+
+.group:hover .folder-preview {
+  transform: translateY(0) scale(1);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.15;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.creative-script {
+  font-family: var(--font-playfair), "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.design-highlight {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  padding: 0 4px;
+  font-weight: 600;
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.design-highlight::before,
+.design-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.design-highlight::before {
+  width: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 130%;
+  top: -15%;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.9) 50%, transparent);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.55);
+}
+
+.design-highlight::after {
+  height: 2px;
+  top: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 208, 0.8), transparent);
+  filter: blur(0.5px);
+}
+
+.ampersand-pop {
+  color: #ff00d0;
+  font-weight: 700;
+}

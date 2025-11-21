@@ -1,83 +1,186 @@
 "use client";
 
-const services = [
-  { title: "Social Media Management", description: "Always-on storytelling, campaigns, and community engagement." },
-  { title: "Graphic Design", description: "Print, packaging, and marketing suites that stay on-brand." },
-  { title: "UI/UX Design", description: "Product wireframes, prototypes, and interaction systems." },
-  { title: "Brand Identity", description: "Visual systems, tone, and guidelines built for scale." },
-  { title: "Web Development", description: "Full-stack websites, landing pages, and performance builds." },
-  { title: "Logo Design", description: "Signature marks with story-first symbolism." },
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+
+const designServices = [
+  "Logo and Branding",
+  "UI/UX",
+  "Graphic Design",
+  "Presentation",
+  "Social Media Management",
+];
+
+const developmentServices = [
+  "Website Development",
+  "E-commerce Web Development",
+  "Custom Software Development",
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="relative isolate overflow-hidden px-6 py-24 text-white">
-      <div className="absolute inset-0 rounded-[48px] border border-[#b000ff27] bg-gradient-to-b from-[#2a0037] via-[#09020e] to-[#050505] shadow-[0_0_80px_rgba(176,0,255,0.35)]" />
-      <div className="absolute inset-x-10 bottom-20 h-1 bg-gradient-to-r from-transparent via-[#f000ff66] to-transparent blur-lg" />
-
+    <section className="relative isolate overflow-hidden px-6 py-24 text-white bg-black">
       <div className="relative mx-auto max-w-5xl">
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff] bg-black/40 px-6 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-white/80 shadow-[0_0_25px_rgba(160,0,255,0.45)]">
-            <span className="h-2 w-2 rounded-full bg-[#f200ff]" />
+        {/* Header */}
+        <div className="flex justify-center mb-12">
+          <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff]/30 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
+            <span className="h-2 w-2 rounded-full bg-[#f200ff] shadow-[0_0_10px_#f200ff]" />
             Services
           </div>
         </div>
 
-        <div className="mt-8 text-center">
-          <p className="text-xl uppercase tracking-[0.35em] text-white/50">Everything you need to</p>
-          <h2 className="text-4xl font-bold text-white sm:text-5xl">Build a Standout Brand</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-white/60">
-            We go beyond visuals to craft memorable brand experiences. By combining design, storytelling, and digital innovation, we help your brand connect, inspire, and stay unforgettable.
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+            Everything You Need to
+            <br />
+            <span className="bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
+              Build a Standout Brand
+            </span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-sm md:text-base text-white/60 leading-relaxed">
+            We go beyond visuals to craft memorable brand experiences.
+            <br className="hidden md:block" />
+            By combining design, storytelling, and digital innovation, we help your brand connect, inspire, and stay unforgettable.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={service.title}
-              title={service.title}
-              description={service.description}
-              index={index + 1}
-            />
-          ))}
+        {/* Cards Container */}
+        <div className="grid gap-8">
+          {/* Design Card */}
+          <SpotlightCard title="Design" services={designServices} />
+
+          {/* Development Card */}
+          <SpotlightCard title="Development" services={developmentServices} />
         </div>
       </div>
     </section>
   );
 }
 
-function ServiceCard({ title, description, index }: { title: string; description: string; index: number }) {
+function SpotlightCard({ title, services }: { title: string; services: string[] }) {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!divRef.current || isFocused) return;
+
+    const div = divRef.current;
+    const rect = div.getBoundingClientRect();
+
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    setOpacity(1);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    setOpacity(0);
+  };
+
+  const handleMouseEnter = () => {
+    setOpacity(1);
+  };
+
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
+
   return (
-    <div className="group relative overflow-hidden rounded-[28px] border border-white/15 bg-black/60 px-8 py-7 text-left shadow-[0_10px_35px_rgba(0,0,0,0.45)] transition duration-300 hover:border-[#c700ff] hover:shadow-[0_25px_60px_rgba(199,0,255,0.25)]">
-      <div className="relative z-10 transition duration-300 group-hover:translate-y-2 group-hover:opacity-0">
-        <div className="flex items-center justify-between">
-          <p className="text-lg font-semibold text-white">{title}</p>
-          <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-[#1c1c1f] text-white">
-            <ArrowIcon className="h-5 w-5 -rotate-45 origin-center transition duration-300 group-hover:rotate-0 group-hover:text-[#f200ff]" />
-          </span>
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="group relative overflow-hidden rounded-[40px] border border-white/10 bg-[#0a0a0a] p-8 md:p-12 transition-colors duration-500"
+    >
+      {/* Spotlight Effect */}
+      <div
+        className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          opacity,
+          background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(176,0,255,0.15), transparent 40%)`,
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-12">
+          <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight">
+            {title}
+          </h3>
+          <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors duration-300">
+            <ArrowIcon className="w-4 h-4 text-white/50 transition-colors duration-300 group-hover:text-white" />
+          </div>
         </div>
-        <p className="mt-4 text-sm text-white/50 transition duration-300 group-hover:text-white/80">{description}</p>
-      </div>
 
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
-        <div className="absolute inset-x-10 bottom-3 h-[2px] bg-gradient-to-r from-transparent via-[#f200ff] to-transparent" />
-      </div>
-
-      <div className="absolute inset-0 bg-gradient-to-r from-[#f200ff0a] via-transparent to-[#b400ff0a] opacity-0 transition duration-300 group-hover:opacity-100" />
-      <span className="absolute -top-4 right-8 text-xs uppercase tracking-[0.4em] text-white/20">0{index}</span>
-
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/70 text-center text-sm text-white/80 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100">
-        <p className="px-10">{description}</p>
+        <div className="space-y-2">
+          {services.map((service) => (
+            <ServiceItem key={service} text={service} />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
+function ServiceItem({ text }: { text: string }) {
+  return (
+    <motion.div
+      className="group/item relative flex items-center justify-between py-4 border-b border-white/5 overflow-hidden cursor-pointer"
+      initial="initial"
+      whileHover="hover"
+    >
+      {/* Morphing Background Reveal */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-[#b000ff]/10 to-transparent"
+        variants={{
+          initial: { x: "-100%" },
+          hover: { x: "0%" },
+        }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }} // Custom easing for "morph" feel
+      />
+
+      <motion.span
+        className="relative z-10 text-lg md:text-xl text-white/60 transition-colors duration-300 group-hover/item:text-white pl-2"
+        variants={{
+          initial: { x: 0 },
+          hover: { x: 10 },
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        {text}
+      </motion.span>
+
+      <motion.div
+        className="relative z-10 pr-2"
+        variants={{
+          initial: { opacity: 0, x: -10 },
+          hover: { opacity: 1, x: 0 },
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        <ArrowIcon className="w-4 h-4 text-[#b000ff]" />
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function ArrowIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path d="M5 19 19 5" strokeLinecap="round" />
-      <path d="M9 5h10v10" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={className}
+    >
+      <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

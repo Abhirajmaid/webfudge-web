@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const infoLinks = ["Company", "Products", "Services"];
 const aboutLinks = ["Gallery", "Contacts"];
@@ -58,7 +59,14 @@ export default function Footer() {
 
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div>
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 text-2xl">✶</div>
+              <div className="relative h-12 w-12 rounded-2xl border border-white/20 overflow-hidden">
+                <Image
+                  src="/proxy-image.png"
+                  alt="Webfudge Logo"
+                  fill
+                  className="object-contain p-2"
+                />
+              </div>
               <p className="mt-2 text-lg font-semibold text-white">Webfudge</p>
             </div>
             <div className="flex-1">

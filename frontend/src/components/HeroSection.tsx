@@ -1,26 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 const navLinks = ["Home", "Services", "Projects", "About", "Contact"];
 const marqueeLogos = ["Webfudge", "Webhound", "Webforge", "Wel Labs", "Vivid AI"];
 
 export default function HeroSection() {
-  const [cursorActive, setCursorActive] = useState(false);
-
   return (
-    <section
-      className="relative isolate overflow-hidden bg-[#050505] text-white lg:cursor-none"
-      onMouseEnter={() => setCursorActive(true)}
-      onMouseLeave={() => setCursorActive(false)}
-    >
+    <section className="relative isolate overflow-hidden bg-[#050505] text-white">
       <BackgroundGlows />
-      <CursorStar active={cursorActive} />
 
       <nav className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 text-sm font-medium uppercase tracking-[0.25em] text-white/70">
         <Link href="/" className="flex items-center gap-3 text-white">
-          <LogoAsterisk className="h-10 w-10 text-white" />
+          <div className="relative h-10 w-10">
+            <Image
+              src="/proxy-image.png"
+              alt="Webfudge Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
           <span className="text-base font-semibold tracking-[0.4em]">Webfudge</span>
         </Link>
 
@@ -99,7 +100,14 @@ function Marquee({ logos }: { logos: string[] }) {
             key={`${logo}-${index}`}
             className="flex min-w-[160px] items-center justify-center gap-2 px-8 text-sm font-semibold text-white/70"
           >
-            <LogoAsterisk className="h-5 w-5 text-white/40" />
+            <div className="relative h-5 w-5 opacity-40">
+              <Image
+                src="/proxy-image.png"
+                alt="Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             {logo}
           </div>
         ))}
@@ -113,53 +121,23 @@ function BackgroundGlows() {
     <>
       <div className="absolute inset-0 bg-gradient-to-b from-[#1c0024] via-transparent to-[#050505]" />
       <div className="absolute inset-x-0 bottom-[-30%] h-[40%] bg-gradient-to-t from-[#b300ff33] to-transparent blur-3xl" />
-      <LogoAsterisk className="pointer-events-none absolute -left-20 top-16 h-72 w-72 text-[#a100ff33] blur-[60px]" />
-      <LogoAsterisk className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 text-[#ff00d033] blur-[70px]" />
+
+      <div className="pointer-events-none absolute -left-20 top-16 h-72 w-72 opacity-20 blur-[60px]">
+        <Image
+          src="/proxy-image.png"
+          alt="Glow"
+          fill
+          className="object-contain"
+        />
+      </div>
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 opacity-20 blur-[70px]">
+        <Image
+          src="/proxy-image.png"
+          alt="Glow"
+          fill
+          className="object-contain"
+        />
+      </div>
     </>
   );
 }
-
-function CursorStar({ active }: { active: boolean }) {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMove = (event: PointerEvent) => {
-      setPosition({ x: event.clientX, y: event.clientY });
-    };
-
-    window.addEventListener("pointermove", handleMove);
-    return () => window.removeEventListener("pointermove", handleMove);
-  }, []);
-
-  if (!active) return null;
-
-  return (
-    <div className="pointer-events-none fixed inset-0 z-50 hidden lg:block">
-      <div
-        className="transition-transform duration-100"
-        style={{ transform: `translate3d(${position.x - 24}px, ${position.y - 24}px, 0)` }}
-      >
-        <LogoAsterisk className="h-12 w-12 text-[#ff00d0] drop-shadow-[0_0_25px_rgba(255,0,208,0.7)]" />
-      </div>
-    </div>
-  );
-}
-
-function LogoAsterisk({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 96 96"
-      className={className}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="currentColor"
-      strokeWidth={10}
-      strokeLinecap="round"
-    >
-      <line x1="48" y1="8" x2="48" y2="88" />
-      <line x1="15" y1="25" x2="81" y2="71" />
-      <line x1="15" y1="71" x2="81" y2="25" />
-    </svg>
-  );
-}
-

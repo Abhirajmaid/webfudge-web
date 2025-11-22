@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SectionTitle from "./SectionTitle";
 
 const faqs = [
   {
@@ -26,7 +27,9 @@ export default function FAQSection() {
       <div className="absolute inset-0 rounded-[48px] border border-[#b000ff2f] bg-gradient-to-b from-[#1f002d] via-[#070107] to-[#050505]" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#5f00a8] via-transparent to-transparent opacity-60 blur-3xl" />
       <div className="relative mx-auto flex max-w-5xl flex-col gap-16">
-        <SectionTag label="FAQs" />
+        <div className="flex justify-center">
+          <SectionTitle title="FAQs" />
+        </div>
 
         <div className="space-y-8">
           <h2 className="text-center text-3xl font-semibold text-white/80 sm:text-4xl">Frequently Asked Questions</h2>
@@ -43,7 +46,9 @@ export default function FAQSection() {
         </div>
 
         <div className="relative overflow-hidden rounded-[40px] border border-[#b000ff3d] bg-gradient-to-b from-[#2a003d] via-[#0b050c] to-[#060606] px-8 py-14 text-center shadow-[0_25px_70px_rgba(0,0,0,0.5)]">
-          <SectionTag label="Become a Part of Us" />
+          <div className="flex justify-center">
+            <SectionTitle title="Become a Part of Us" />
+          </div>
           <h3 className="mt-6 text-3xl font-semibold text-white sm:text-4xl">Ready to Elevate Your Brand?</h3>
           <p className="mt-3 text-sm text-white/60">Plug into Webfudge and let’s craft a standout presence together.</p>
           <a
@@ -80,24 +85,12 @@ function AccordionItem({
         </span>
       </div>
       <div
-        className={`grid transition-all duration-300 ${
-          isOpen ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-        }`}
+        className={`grid transition-all duration-300 ${isOpen ? "mt-4 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+          }`}
       >
         <p className="overflow-hidden text-sm text-white/70">{faq.answer}</p>
       </div>
     </button>
-  );
-}
-
-function SectionTag({ label }: { label: string }) {
-  return (
-    <div className="flex justify-center">
-      <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff] bg-black/40 px-6 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-white/70">
-        <span className="h-2 w-2 rounded-full bg-[#f200ff]" />
-        {label}
-      </div>
-    </div>
   );
 }
 

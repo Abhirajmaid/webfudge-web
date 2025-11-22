@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import SectionTitle from "./SectionTitle";
 
 const projects = [
   {
@@ -33,10 +34,7 @@ export default function PortfolioSection() {
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
           {/* Left Column - Sticky Content */}
           <div className="lg:w-1/2 lg:h-[calc(100vh-6rem)] lg:sticky lg:top-24 flex flex-col justify-center items-start">
-            <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff]/30 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md mb-8">
-              <span className="h-2 w-2 rounded-full bg-[#f200ff] shadow-[0_0_10px_#f200ff]" />
-              Portfolio
-            </div>
+            <SectionTitle title="Portfolio" className="mb-8" />
 
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               A Glimpse Into

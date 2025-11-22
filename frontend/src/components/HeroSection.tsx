@@ -39,7 +39,7 @@ export default function HeroSection() {
 
         <Link
           href="/contact"
-          className="rounded-full bg-gradient-to-r from-[#d400ff] via-[#f5009b] to-[#ff00d0] px-6 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_10px_40px_rgba(255,0,214,0.35)] transition hover:shadow-[0_10px_45px_rgba(255,0,214,0.55)]"
+          className="rounded-full bg-[#9d00ff] px-8 py-3 text-sm font-bold uppercase tracking-widest text-white shadow-[0_0_20px_rgba(157,0,255,0.5)] transition hover:bg-[#b000ff] hover:shadow-[0_0_30px_rgba(157,0,255,0.7)]"
         >
           Get In Touch
         </Link>
@@ -54,7 +54,38 @@ export default function HeroSection() {
           Where{" "}
           <span className="creative-script text-white">Creativity</span>
           <span className="text-white">,</span>{" "}
-          <span className="design-highlight">Design</span>{" "}
+          <span className="text-white">,</span>{" "}
+          <span className="relative inline-block leading-none">
+            <span className="relative z-10 font-semibold text-white">Design</span>
+            {/* Top Light Stick - Overshooting */}
+            <div
+              className="absolute -top-[0px] left-[-20%] h-[2px] w-[140%] opacity-100"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, #ffffff 20%, #ffffff 80%, transparent 100%)",
+              }}
+            />
+            {/* Bottom Light Stick - Overshooting differently */}
+            <div
+              className="absolute -bottom-[0px] left-[-10%] h-[2px] w-[120%] opacity-100"
+              style={{
+                background: "linear-gradient(90deg, transparent 0%, #ffffff 20%, #ffffff 80%, transparent 100%)",
+              }}
+            />
+            {/* Left Light Stick - Overshooting vertically */}
+            <div
+              className="absolute left-[0px] top-[-30%] h-[160%] w-[2px] opacity-100"
+              style={{
+                background: "linear-gradient(180deg, transparent 0%, #ffffff 20%, #ffffff 80%, transparent 100%)",
+              }}
+            />
+            {/* Right Light Stick - Overshooting vertically differently */}
+            <div
+              className="absolute right-[0px] top-[-15%] h-[130%] w-[2px] opacity-100"
+              style={{
+                background: "linear-gradient(180deg, transparent 0%, #ffffff 20%, #ffffff 80%, transparent 100%)",
+              }}
+            />
+          </span>{" "}
           <span className="ampersand-pop">&amp;</span>{" "}
           <span className="font-normal text-white">Tech Blend Perfectly</span>
         </h1>
@@ -68,15 +99,15 @@ export default function HeroSection() {
         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
           <Link
             href="/contact"
-            className="rounded-full bg-white px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-black transition hover:bg-white/90"
+            className="rounded-xl bg-white px-8 py-3 text-sm font-bold uppercase tracking-widest text-black transition hover:bg-gray-200"
           >
-            Connect With Us
+            CONNECT WITH US
           </Link>
           <Link
             href="/about"
-            className="rounded-full border border-white/40 px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:border-white"
+            className="rounded-xl border border-white/50 bg-white/10 px-8 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white/20 hover:border-white"
           >
-            Know Us
+            KNOW US
           </Link>
         </div>
 
@@ -122,6 +153,9 @@ function BackgroundGlows() {
       <div className="absolute inset-0 bg-gradient-to-b from-[#1c0024] via-transparent to-[#050505]" />
       <div className="absolute inset-x-0 bottom-[-30%] h-[40%] bg-gradient-to-t from-[#b300ff33] to-transparent blur-3xl" />
 
+      {/* Dome Gradient - Brighter top, fading bottom, wider, glowing */}
+      <div className="absolute bottom-[-10%] left-1/2 z-0 h-[500px] w-[120%] max-w-[1400px] -translate-x-1/2 rounded-t-[100%] bg-gradient-to-b from-[#d400ff] via-[#d400ff]/40 to-transparent opacity-50 blur-[100px]" />
+
       <div className="pointer-events-none absolute -left-20 top-16 h-72 w-72 opacity-20 blur-[60px]">
         <Image
           src="/proxy-image.png"
@@ -138,6 +172,27 @@ function BackgroundGlows() {
           className="object-contain"
         />
       </div>
+
+      {/* Background Asterisks - Using SVG for 6-leg shape */}
+      <div className="pointer-events-none absolute -left-24 top-[15%] z-0 opacity-20 blur-[40px]">
+        <AsteriskIcon className="h-[500px] w-[500px] text-[#d400ff]" />
+      </div>
+      <div className="pointer-events-none absolute -right-32 top-[30%] z-0 opacity-20 blur-[50px]">
+        <AsteriskIcon className="h-[600px] w-[600px] text-[#b300ff]" />
+      </div>
     </>
+  );
+}
+
+function AsteriskIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M11 2.00006L11 10.0001L4.07184 6.00006L3.07184 7.73211L10 11.7321L3.07184 15.7321L4.07184 17.4642L11 13.4642L11 21.4642H13L13 13.4642L19.9282 17.4642L20.9282 15.7321L14 11.7321L20.9282 7.73211L19.9282 6.00006L13 10.0001L13 2.00006H11Z" />
+    </svg>
   );
 }

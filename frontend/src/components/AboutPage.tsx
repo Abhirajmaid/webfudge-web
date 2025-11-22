@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import SectionTitle from "./SectionTitle";
 
 const headline = "Since 2022, we have been turning ideas into real digital experiences that not only look great but also deliver results.";
 const coda = "We do it all with passion, precision, and purpose.";
@@ -33,10 +34,7 @@ export default function AboutPage() {
     <section ref={sectionRef} className="relative isolate overflow-hidden px-6 py-24 text-white">
       <BackgroundElements />
       <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-        <div className="inline-flex items-center gap-3 rounded-full border border-[#821480] bg-black/30 px-6 py-2 text-xs font-semibold uppercase tracking-[0.45em] text-white/80 shadow-[0_0_25px_rgba(201,0,255,0.25)]">
-          <span className="h-2 w-2 rounded-full bg-[#d700ff]" />
-          About Webfudge
-        </div>
+        <SectionTitle title="About Webfudge" />
 
         <p className="mt-10 text-balance text-4xl leading-snug text-white sm:text-5xl">
           {words.map((word, index) => (

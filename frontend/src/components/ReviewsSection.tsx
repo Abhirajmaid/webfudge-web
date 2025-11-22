@@ -10,6 +10,7 @@ import {
   useAnimationFrame,
   animate,
 } from "framer-motion";
+import SectionTitle from "./SectionTitle";
 
 const testimonials = [
   { quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.", author: "Elizabeth", location: "Chicago" },
@@ -28,10 +29,7 @@ export default function ReviewsSection() {
     <section className="relative isolate overflow-hidden py-24 text-white bg-black">
       <div className="relative mx-auto max-w-full">
         <div className="flex justify-center mb-12">
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff]/30 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
-            <span className="h-2 w-2 rounded-full bg-[#f200ff] shadow-[0_0_10px_#f200ff]" />
-            Testimonials
-          </div>
+          <SectionTitle title="Testimonials" />
         </div>
 
         <div className="text-center mb-16 px-6">

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import SectionTitle from "./SectionTitle";
 
 const designServices = [
   "Logo and Branding",
@@ -23,10 +24,7 @@ export default function ServicesSection() {
       <div className="relative mx-auto max-w-5xl">
         {/* Header */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#a100ff]/30 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur-md">
-            <span className="h-2 w-2 rounded-full bg-[#f200ff] shadow-[0_0_10px_#f200ff]" />
-            Services
-          </div>
+          <SectionTitle title="Services" />
         </div>
 
         <div className="text-center mb-20">
@@ -132,10 +130,13 @@ function SpotlightCard({ title, services }: { title: string; services: string[] 
 function ServiceItem({ text }: { text: string }) {
   return (
     <motion.div
-      className="group/item relative flex items-center justify-between py-4 border-b border-white/5 overflow-hidden cursor-pointer"
+      className="group/item relative flex items-center justify-between py-4 overflow-hidden cursor-pointer"
       initial="initial"
       whileHover="hover"
     >
+      {/* Light String Divider */}
+      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-white to-transparent opacity-80 group-hover/item:opacity-100 transition-all duration-300" />
+
       {/* Morphing Background Reveal */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-[#b000ff]/10 to-transparent"

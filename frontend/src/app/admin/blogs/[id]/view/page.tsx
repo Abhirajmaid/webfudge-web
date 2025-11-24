@@ -31,7 +31,7 @@ export default function AdminBlogViewPage() {
             and snappy copy to keep SaaS funnels feeling alive. When a brand
             blends neon flair with trust-building micro-copy, conversions soar.
           </p>
-          <h3>Signal > Noise</h3>
+          <h3>Signal &gt; Noise</h3>
           <p>
             Strip every paragraph down to a single point. Use iconography to
             keep scrollers oriented. Add proof points (metrics, testimonials)

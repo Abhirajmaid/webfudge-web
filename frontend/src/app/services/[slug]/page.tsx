@@ -325,7 +325,7 @@ export default function ServicePage() {
               Ready to Get Started?
             </h2>
             <p className="text-white/90 text-lg mb-8">
-              Let's discuss your {service.title.toLowerCase()} project and create something amazing together.
+              Let&apos;s discuss your {service.title.toLowerCase()} project and create something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 

@@ -109,7 +109,7 @@ export default function AdminProjectsEditPage() {
               </label>
               <input
                 name={field.name}
-                value={(form as any)[field.name]}
+                value={(form as Record<string, string | boolean>)[field.name] as string}
                 onChange={handleChange}
                 className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-purple-400"
               />
@@ -155,7 +155,7 @@ export default function AdminProjectsEditPage() {
               <input
                 type={field.type}
                 name={field.name}
-                value={(form as any)[field.name]}
+                value={(form as Record<string, string | boolean>)[field.name] as string}
                 onChange={handleChange}
                 className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-purple-400"
               />
@@ -243,7 +243,7 @@ export default function AdminProjectsEditPage() {
                   </label>
                   <input
                     name={field}
-                    value={(form as any)[field]}
+                    value={(form as Record<string, string | boolean>)[field] as string}
                     onChange={handleChange}
                     className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-purple-400"
                   />

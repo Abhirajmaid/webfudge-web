@@ -52,7 +52,8 @@ export default function AdminProjectsNewPage() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -295,7 +296,7 @@ export default function AdminProjectsNewPage() {
                 </label>
                 <input
                   name={field.name}
-                  value={(form as any)[field.name]}
+                  value={(form as Record<string, string | boolean>)[field.name] as string}
                   onChange={handleChange}
                   className="mt-2 w-full rounded-2xl border border-white/10 bg-black/40 px-4 py-3 text-white outline-none focus:border-purple-400"
                 />

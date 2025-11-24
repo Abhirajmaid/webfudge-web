@@ -62,7 +62,7 @@ export default function DribbbleShowcase() {
               {/* Purple/Green App Interface */}
               <div className="absolute top-0 left-0 w-48 h-32 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg p-4 shadow-lg transform rotate-3">
                 <div className="text-white text-sm font-bold mb-2">WHICH CA APP OR SMART DE</div>
-                <div className="bg-green-400 rounded px-2 py-1 text-xs font-bold mb-2">LET'S TRY</div>
+                <div className="bg-green-400 rounded px-2 py-1 text-xs font-bold mb-2">LET&apos;S TRY</div>
                 <div className="text-white text-xs">John D</div>
                 <div className="text-white text-xs">Q GET THE APP</div>
               </div>
@@ -83,7 +83,7 @@ export default function DribbbleShowcase() {
               <div className="absolute bottom-16 left-8 w-44 h-28 bg-gray-800 rounded-lg p-3 shadow-lg transform rotate-1">
                 <div className="text-white text-sm font-bold mb-1">Payroll, benefits & more.</div>
                 <div className="text-gray-300 text-xs mb-2">We provide document management solutions</div>
-                <div className="bg-blue-500 text-white px-2 py-1 rounded text-xs inline-block">iF EDITORS' CHOICE</div>
+                <div className="bg-blue-500 text-white px-2 py-1 rounded text-xs inline-block">iF EDITORS&apos; CHOICE</div>
               </div>
               
               {/* Dark Navigation */}

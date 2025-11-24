@@ -22,33 +22,43 @@ export default function ServicesSection() {
   return (
     <section className="relative isolate overflow-hidden px-6 py-24 text-white bg-black">
       <div className="relative mx-auto max-w-5xl">
-        {/* Header */}
-        <div className="flex justify-center mb-12">
-          <SectionTitle title="Services" />
-        </div>
+        {/* Outer Card */}
+        <div className="relative overflow-hidden rounded-[48px] bg-[#0a0a0a] p-8 md:p-16 border border-white/5">
+          {/* Background Gradient for Outer Card */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-black pointer-events-none" />
 
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
-            Everything You Need to
-            <br />
-            <span className="bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">
-              Build a Standout Brand
-            </span>
-          </h2>
-          <p className="mx-auto max-w-2xl text-sm md:text-base text-white/60 leading-relaxed">
-            We go beyond visuals to craft memorable brand experiences.
-            <br className="hidden md:block" />
-            By combining design, storytelling, and digital innovation, we help your brand connect, inspire, and stay unforgettable.
-          </p>
-        </div>
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Pill Badge */}
+            <div className="mb-8 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-sm">
+              <div className="flex items-center gap-2">
+                <div className="h-2 w-2 rounded-full bg-white" />
+                <span className="text-xs font-medium uppercase tracking-widest text-white/80">Services</span>
+              </div>
+            </div>
 
-        {/* Cards Container */}
-        <div className="grid gap-8">
-          {/* Design Card */}
-          <SpotlightCard title="Design" services={designServices} />
+            {/* Title */}
+            <h2 className="text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl tracking-tight mb-4">
+              Everything You Need to
+              <br />
+              <span className="text-white">Build a Standout Brand</span>
+            </h2>
 
-          {/* Development Card */}
-          <SpotlightCard title="Development" services={developmentServices} />
+            {/* Subtitle */}
+            <p className="mx-auto max-w-2xl text-center text-sm text-white/40 md:text-base leading-relaxed mb-16">
+              We go beyond visuals to craft memorable brand experiences.
+              <br className="hidden md:block" />
+              By combining design, storytelling, and digital innovation, we help your brand connect, inspire, and stay unforgettable.
+            </p>
+
+            {/* Inner Cards Container (Restored) */}
+            <div className="grid gap-8 w-full">
+              {/* Design Card */}
+              <SpotlightCard title="Design" services={designServices} />
+
+              {/* Development Card */}
+              <SpotlightCard title="Development" services={developmentServices} />
+            </div>
+          </div>
         </div>
       </div>
     </section>
